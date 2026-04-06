@@ -1,0 +1,44 @@
+# ── Environment ──
+.env
+*.env
+
+# ── Python ──
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+.Python
+*.egg-info/
+dist/
+build/
+
+# ── Virtual Environment ──
+venv/
+env/
+RAG_env/
+*.venv
+
+# ── Database ──
+*.db
+*.sqlite
+*.sqlite3
+
+# ── Uploads & Storage ──
+backend/uploads/
+backend/chroma_db/
+
+# ── VS Code ──
+.vscode/
+
+# ── OS ──
+.DS_Store
+Thumbs.db
+
+# ── Logs ──
+*.log
+
+# ── HuggingFace Cache ──
+.cache/
+
+# ── Jupyter ──
+.ipynb_checkpoints/

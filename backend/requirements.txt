@@ -1,0 +1,50 @@
+# ── Web Framework ──
+fastapi
+uvicorn[standard]
+python-dotenv
+pydantic-settings
+python-multipart
+
+# ── Database ──
+sqlalchemy
+alembic
+aiosqlite
+
+# ── Auth ──
+python-jose[cryptography]
+passlib[bcrypt]
+
+# ── File Parsing ──
+pymupdf
+pdfplumber
+python-docx
+pandas
+openpyxl
+pytesseract
+opencv-python-headless
+
+# ── AI / LLM ──
+google-generativeai
+transformers
+sentence-transformers
+ollama
+
+# ── Audio / Video ──
+openai-whisper
+ffmpeg-python
+
+# ── Retrieval ──
+chromadb
+rank-bm25
+
+# ── Background Tasks ──
+celery
+redis
+
+# ── Testing ──
+pytest
+pytest-asyncio
+httpx
+
+# ── Evaluation ──
+ragas
