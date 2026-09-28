@@ -1,9 +1,10 @@
+import os
 import streamlit as st
 import requests
 
 st.set_page_config(page_title="Chat", page_icon="💬")
 
-BACKEND_URL = "http://localhost:8000"
+BACKEND_URL = os.environ.get("BACKEND_URL", "http://localhost:8000")
 
 st.title("💬 Chat with your Documents")
 
