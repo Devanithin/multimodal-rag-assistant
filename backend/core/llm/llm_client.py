@@ -3,16 +3,31 @@ from langchain_core.output_parsers import StrOutputParser
 from core.retrieval.hybrid_search import hybrid_search
 from config import settings
 from functools import lru_cache
+from langchain_openai import ChatOpenAI
 
-
-@lru_cache(maxsize=1)
+# ----------for openrouoter model ----------
+# @lru_cache(maxsize=1)
 def get_llm():
-    llm = ChatGoogleGenerativeAI(
-        model=settings.GEMINI_MODEL,
-        google_api_key=settings.GEMINI_API_KEY,
-        temperature=0.3
+    llm = ChatOpenAI(
+        model=settings.OPENROUTER_MODEL,
+        openai_api_key=settings.OPENROUTER_API_KEY,
+        openai_api_base="https://openrouter.ai/api/v1",
+        temperature=0,
+        default_headers={
+            "HTTP-Referer": "http://localhost:8000",
+            "X-Title": "Multimodal RAG Assistant",
+        }
     )
     return llm
+
+# @lru_cache(maxsize=1)
+# def get_llm():
+#     llm = ChatGoogleGenerativeAI(
+#         model=settings.GEMINI_MODEL,
+#         google_api_key=settings.GEMINI_API_KEY,
+#         temperature=0.3
+#     )
+#     return llm
 
 
 def ask_question(question: str) -> dict:

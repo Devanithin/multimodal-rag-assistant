@@ -16,6 +16,9 @@ class Settings(BaseSettings):
     GEMINI_API_KEY: str = ""
     GEMINI_MODEL: str = "gemini-1.5-flash"
 
+    OPENROUTER_API_KEY: str = ""
+    OPENROUTER_MODEL: str = "google/gemini-2.0-flash-exp:free"
+
     EMBEDDING_MODEL: str = "sentence-transformers/all-MiniLM-L6-v2"
 
     OLLAMA_BASE_URL: str = "http://localhost:11434"
