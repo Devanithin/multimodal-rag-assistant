@@ -22,7 +22,7 @@ A production-grade Retrieval-Augmented Generation (RAG) system that allows users
 | Layer | Technology |
 |-------|-----------|
 | Backend | FastAPI, Python |
-| LLM | Google Gemini via LangChain |
+| LLM | OpenRouter (Gemini 2.0 Flash) via LangChain |
 | Embeddings | HuggingFace sentence-transformers |
 | Vector DB | ChromaDB |
 | Keyword Search | BM25 (rank-bm25) |
@@ -46,7 +46,7 @@ multimodal-rag-assistant/
 │   │   ├── ingestion/
 │   │   │   ├── pdf_parser.py
 │   │   │   ├── csv_parser.py
-│   │   │   ├── docx_parser.py
+│   │   │   ├── docs_parser.py
 │   │   │   ├── media_processor.py
 │   │   │   ├── youtube_loader.py
 │   │   │   ├── web_loader.py
@@ -79,7 +79,7 @@ multimodal-rag-assistant/
 
 ### 1. Clone the repository
 ```bash
-git clone https://github.com/YOUR_USERNAME/multimodal-rag-assistant.git
+git clone https://github.com/Devanithin/multimodal-rag-assistant.git
 cd multimodal-rag-assistant
 ```
 
@@ -103,11 +103,11 @@ cp .env.example .env
 
 Edit `.env` and add your values:
 ```env
-GEMINI_API_KEY=your-gemini-api-key
-GEMINI_MODEL=gemini-2.0-flash
+OPENROUTER_API_KEY=your-openrouter-api-key
+OPENROUTER_MODEL=google/gemini-2.0-flash-exp:free
 ```
 
-Get your free Gemini API key from: https://aistudio.google.com/app/apikey
+Get your free OpenRouter API key from: https://openrouter.ai/keys
 
 ### 5. Run the backend
 ```bash
@@ -159,7 +159,7 @@ User asks question
         ↓
 Hybrid search (Semantic + BM25)
         ↓
-Top chunks sent to Gemini
+Top chunks sent to LLM (OpenRouter)
         ↓
 Answer + source citations returned
 ```
@@ -170,8 +170,10 @@ Answer + source citations returned
 
 | Variable | Description |
 |----------|-------------|
-| `GEMINI_API_KEY` | Google Gemini API key |
-| `GEMINI_MODEL` | Gemini model name |
+| `OPENROUTER_API_KEY` | OpenRouter API key (used by the LLM client) |
+| `OPENROUTER_MODEL` | OpenRouter model name |
+| `GEMINI_API_KEY` | Google Gemini API key (legacy, currently unused) |
+| `GEMINI_MODEL` | Gemini model name (legacy, currently unused) |
 | `EMBEDDING_MODEL` | HuggingFace embedding model |
 | `DATABASE_URL` | SQLite database URL |
 | `UPLOAD_DIR` | Directory for uploaded files |
