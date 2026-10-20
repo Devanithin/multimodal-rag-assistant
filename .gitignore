@@ -27,6 +27,9 @@ RAG_env/
 backend/uploads/
 backend/chroma_db/
 
+# ── Evaluation ──
+evaluation/results/.progress.json
+
 # ── VS Code ──
 .vscode/
 

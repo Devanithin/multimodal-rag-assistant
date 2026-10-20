@@ -1,0 +1,160 @@
+{
+  "judge": "claude-opus-5-5 (manual review)",
+  "grades": {
+    "att-01": {
+      "correctness": "correct",
+      "faithful": true,
+      "reason": "States N = 6 identical layers, quoting the context; sub-layer details are also in the context."
+    },
+    "att-02": {
+      "correctness": "correct",
+      "faithful": false,
+      "reason": "Correct explanation (large dot products push softmax into tiny-gradient regions), but adds unsupported claims, e.g. that 1/sqrt(64) = 1/8 is 'comfortably small enough to keep dot products well-behaved'."
+    },
+    "att-03": {
+      "correctness": "partial",
+      "faithful": true,
+      "reason": "The output is the model's leaked reasoning trace ('Here's a thinking process...'), cut off with no final answer; the quoted passage does contain h = 8 and dk = dv = 64."
+    },
+    "att-04": {
+      "correctness": "correct",
+      "faithful": true,
+      "reason": "dff = 2048 with dmodel = 512, quoted from the context."
+    },
+    "att-05": {
+      "correctness": "correct",
+      "faithful": true,
+      "reason": "Answers 28.4, the key fact, though extremely terse (no mention of beating prior results by 2 BLEU)."
+    },
+    "att-06": {
+      "correctness": "correct",
+      "faithful": true,
+      "reason": "Adam with beta1 = 0.9, beta2 = 0.98, eps = 1e-9 and the warmup schedule, all from the context."
+    },
+    "att-07": {
+      "correctness": "correct",
+      "faithful": true,
+      "reason": "4000 warmup steps, quoted from the context."
+    },
+    "att-08": {
+      "correctness": "correct",
+      "faithful": true,
+      "reason": "0.1 label smoothing; hurts perplexity but improves accuracy and BLEU. Final sentence is tangential but supported."
+    },
+    "att-09": {
+      "correctness": "correct",
+      "faithful": true,
+      "reason": "8 NVIDIA P100 GPUs; base models 100,000 steps / 12 hours at ~0.4 s per step."
+    },
+    "att-10": {
+      "correctness": "correct",
+      "faithful": true,
+      "reason": "Gives the main reason (extrapolation to longer sequences); omits that both versions performed nearly identically."
+    },
+    "att-11": {
+      "correctness": "correct",
+      "faithful": true,
+      "reason": "O(1) vs O(n) sequential operations, O(n^2 d) vs O(n d^2) complexity, faster when n < d; all matches Table 1 and the surrounding text."
+    },
+    "att-12": {
+      "correctness": "correct",
+      "faithful": true,
+      "reason": "Names encoder-decoder attention, encoder self-attention and masked decoder self-attention; the third is correctly inferred from the decoder description in the context."
+    },
+    "att-13": {
+      "correctness": "correct",
+      "faithful": false,
+      "reason": "27.3 EN-DE and 38.1 EN-FR are correct, but it claims the base model outperforms Deep-Att + PosUnk (39.2) and GNMT + RL (39.92) on EN-FR, which the table contradicts (38.1 is lower)."
+    },
+    "att-14": {
+      "correctness": "correct",
+      "faithful": true,
+      "reason": "Pdrop = 0.1 quoted from the context; the closing inference is loosely argued but not false."
+    },
+    "vl-01": {
+      "correctness": "correct",
+      "faithful": false,
+      "reason": "Correctly says it predicts continuous embeddings of the target text, but misquotes the paper's example ('the lights will dim' is not in the paper; it uses 'the lamp is turned off')."
+    },
+    "vl-02": {
+      "correctness": "correct",
+      "faithful": true,
+      "reason": "Lists X-Encoder, Predictor, Y-Encoder and Y-Decoder with roles matching the context."
+    },
+    "vl-03": {
+      "correctness": "correct",
+      "faithful": true,
+      "reason": "About 2.85x, quoted; the 0.35 Hz detail is also in the retrieved context."
+    },
+    "vl-04": {
+      "correctness": "correct",
+      "faithful": true,
+      "reason": "Frozen V-JEPA 2 ViT-L with 304M parameters; extra details all match the context."
+    },
+    "vl-05": {
+      "correctness": "correct",
+      "faithful": true,
+      "reason": "Last 8 layers of Llama-3.2-1B, 490M trainable parameters; the ablation remark is supported by the paper."
+    },
+    "vl-06": {
+      "correctness": "correct",
+      "faithful": true,
+      "reason": "EmbeddingGemma-300M."
+    },
+    "vl-07": {
+      "correctness": "correct",
+      "faithful": true,
+      "reason": "Bi-directional InfoNCE training Predictor and Y-Encoder jointly; the ablation details (vs cosine/L1/L2) match the paper."
+    },
+    "vl-08": {
+      "correctness": "correct",
+      "faithful": true,
+      "reason": "Caption-data pretraining (VL-JEPA BASE) then supervised finetuning for VQA, quoted from the context."
+    },
+    "vl-09": {
+      "correctness": "correct",
+      "faithful": true,
+      "reason": "4 weeks on 24 nodes of 8x NVIDIA H200 (192 GPUs)."
+    },
+    "vl-10": {
+      "correctness": "incorrect",
+      "faithful": false,
+      "reason": "Leaks ~3,000 words of reasoning, then claims VL-JEPA SFT has 3.6B parameters; 3.6B is the 'samples seen' column of the flattened Table 1. Both variants have 1.6B parameters."
+    },
+    "vl-11": {
+      "correctness": "correct",
+      "faithful": true,
+      "reason": "61.6% ImageNet zero-shot after 100k iterations and 2B samples, without prompt ensembling."
+    },
+    "vl-12": {
+      "correctness": "correct",
+      "faithful": true,
+      "reason": "Decodes when local window variance of the embedding stream exceeds a threshold; segment/Ward-distance and 2.0-0.01 Hz details are in the paper."
+    },
+    "neg-01": {
+      "correctness": "correct",
+      "faithful": true,
+      "reason": "Says English-to-Spanish is not covered and lists only the EN-DE and EN-FR results that are in the context."
+    },
+    "neg-02": {
+      "correctness": "correct",
+      "faithful": false,
+      "reason": "Correctly says MMLU is not reported, but expands MMLU as 'Massive Multilingual Language Understanding', which is wrong and not in the context."
+    },
+    "neg-03": {
+      "correctness": "correct",
+      "faithful": true,
+      "reason": "Says no dollar cost is given; the compute details it cites are in the context."
+    },
+    "neg-04": {
+      "correctness": "correct",
+      "faithful": true,
+      "reason": "Declines: the documents contain nothing about ibuprofen."
+    },
+    "neg-05": {
+      "correctness": "incorrect",
+      "faithful": false,
+      "reason": "Says the context has no answer, then answers anyway from outside knowledge ('won by Argentina'); a document-grounded assistant should not do this."
+    }
+  }
+}

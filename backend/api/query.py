@@ -1,6 +1,7 @@
 from fastapi import APIRouter, HTTPException
 from pydantic import BaseModel
-from core.llm.llm_client import ask_question
+from core.llm.llm_client import generate_answer
+from core.retrieval.hybrid_search import hybrid_search
 import time
 
 router = APIRouter(prefix="/query", tags=["query"])
@@ -15,21 +16,16 @@ async def ask(request: QueryRequest):
     if not request.question.strip():
         raise HTTPException(status_code=400, detail="Question cannot be empty")
 
-    # ── Track total time ──
-    total_start = time.time()
+    total_start = time.perf_counter()
 
-    # ── Track retrieval time ──
-    retrieval_start = time.time()
-    from core.retrieval.vector_store import search_chunks
-    chunks = search_chunks(request.question)
-    retrieval_time = round(time.time() - retrieval_start, 3)
+    chunks = hybrid_search(request.question, k=8)
+    retrieval_time = round(time.perf_counter() - total_start, 3)
 
-    # ── Track LLM time ──
-    llm_start = time.time()
-    result = ask_question(request.question)
-    llm_time = round(time.time() - llm_start, 3)
+    llm_start = time.perf_counter()
+    result = generate_answer(request.question, chunks)
+    llm_time = round(time.perf_counter() - llm_start, 3)
 
-    total_time = round(time.time() - total_start, 3)
+    total_time = round(time.perf_counter() - total_start, 3)
 
     return {
         "question": request.question,

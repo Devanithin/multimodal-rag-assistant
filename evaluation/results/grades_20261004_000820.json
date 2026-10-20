@@ -1,0 +1,160 @@
+{
+  "judge": "claude-opus-5-5 (manual review)",
+  "grades": {
+    "att-01": {
+      "correctness": "correct",
+      "faithful": true,
+      "reason": "Answers 6, matching N = 6 identical layers."
+    },
+    "att-02": {
+      "correctness": "correct",
+      "faithful": true,
+      "reason": "Large dot products push softmax into tiny-gradient regions; scaling counteracts this. Matches the context, no extra claims."
+    },
+    "att-03": {
+      "correctness": "correct",
+      "faithful": true,
+      "reason": "8 heads of dimension 64; no leaked reasoning this time."
+    },
+    "att-04": {
+      "correctness": "correct",
+      "faithful": true,
+      "reason": "2048."
+    },
+    "att-05": {
+      "correctness": "correct",
+      "faithful": true,
+      "reason": "28.4."
+    },
+    "att-06": {
+      "correctness": "correct",
+      "faithful": true,
+      "reason": "Adam with beta1 = 0.9, beta2 = 0.98, eps = 1e-9; omits the learning-rate schedule but has the key hyperparameters."
+    },
+    "att-07": {
+      "correctness": "correct",
+      "faithful": true,
+      "reason": "4000."
+    },
+    "att-08": {
+      "correctness": "partial",
+      "faithful": true,
+      "reason": "Degenerate output: starts 'Let me analyze...' then loops on '1.1.1.1...' before ending with the right facts (0.1; improves accuracy and BLEU, hurts perplexity). Unusable for a user."
+    },
+    "att-09": {
+      "correctness": "correct",
+      "faithful": true,
+      "reason": "8 NVIDIA P100 GPUs; base models trained 12 hours."
+    },
+    "att-10": {
+      "correctness": "correct",
+      "faithful": true,
+      "reason": "Main reason given (extrapolation to longer sequences); omits that both versions performed nearly identically."
+    },
+    "att-11": {
+      "correctness": "correct",
+      "faithful": true,
+      "reason": "O(1) vs O(n) sequential operations and O(n^2 d) vs O(n d^2) complexity; omits when self-attention is faster but covers the question."
+    },
+    "att-12": {
+      "correctness": "incorrect",
+      "faithful": true,
+      "reason": "Degenerate output: wrongly starts 'The documents do not contain...', then thousands of characters of repeated '1. 1. 1.'. No usable answer."
+    },
+    "att-13": {
+      "correctness": "correct",
+      "faithful": true,
+      "reason": "27.3 and 38.1, with no invented comparisons this time."
+    },
+    "att-14": {
+      "correctness": "correct",
+      "faithful": true,
+      "reason": "0.1."
+    },
+    "vl-01": {
+      "correctness": "correct",
+      "faithful": true,
+      "reason": "Continuous embeddings of the target texts; no invented example this time."
+    },
+    "vl-02": {
+      "correctness": "correct",
+      "faithful": true,
+      "reason": "X-Encoder, Predictor, Y-Encoder, Y-Decoder."
+    },
+    "vl-03": {
+      "correctness": "correct",
+      "faithful": true,
+      "reason": "About 2.85x."
+    },
+    "vl-04": {
+      "correctness": "correct",
+      "faithful": true,
+      "reason": "V-JEPA 2 ViT-L; omits that it is frozen and has 304M parameters, but names the model asked for."
+    },
+    "vl-05": {
+      "correctness": "correct",
+      "faithful": true,
+      "reason": "Last 8 layers of Llama-3.2-1B, 490M trainable parameters."
+    },
+    "vl-06": {
+      "correctness": "correct",
+      "faithful": true,
+      "reason": "EmbeddingGemma-300M."
+    },
+    "vl-07": {
+      "correctness": "correct",
+      "faithful": true,
+      "reason": "InfoNCE loss; omits that it is bi-directional and trains Predictor and Y-Encoder jointly."
+    },
+    "vl-08": {
+      "correctness": "correct",
+      "faithful": true,
+      "reason": "Caption-data pretraining for alignment, then supervised finetuning for VQA."
+    },
+    "vl-09": {
+      "correctness": "correct",
+      "faithful": true,
+      "reason": "4 weeks on 24 nodes of 8x NVIDIA H200."
+    },
+    "vl-10": {
+      "correctness": "incorrect",
+      "faithful": true,
+      "reason": "Says the documents do not contain it. The retrieved chunks only had headerless flattened table rows and not the abstract's '1.6B parameters', so declining was reasonable given the context (better than last run's confident wrong 3.6B), but the question is answerable from the PDF."
+    },
+    "vl-11": {
+      "correctness": "correct",
+      "faithful": true,
+      "reason": "61.6%."
+    },
+    "vl-12": {
+      "correctness": "correct",
+      "faithful": true,
+      "reason": "Decodes when a significant semantic shift is detected, e.g. local window variance exceeding a threshold."
+    },
+    "neg-01": {
+      "correctness": "correct",
+      "faithful": true,
+      "reason": "Declines: documents do not contain it."
+    },
+    "neg-02": {
+      "correctness": "correct",
+      "faithful": true,
+      "reason": "Declines; no invented MMLU expansion this time."
+    },
+    "neg-03": {
+      "correctness": "correct",
+      "faithful": true,
+      "reason": "Declines: documents do not contain it."
+    },
+    "neg-04": {
+      "correctness": "correct",
+      "faithful": true,
+      "reason": "Declines: documents do not contain it."
+    },
+    "neg-05": {
+      "correctness": "correct",
+      "faithful": true,
+      "reason": "Declines without giving the answer from outside knowledge; echoes the prompt fragment 'and stop there'."
+    }
+  }
+}

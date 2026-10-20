@@ -1,0 +1,254 @@
+{
+  "version": 1,
+  "description": "Golden QA set over evaluation/docs. 'evidence' lists alternative phrases (whitespace/case-insensitive); a retrieved chunk is relevant if it contains any of them. Unanswerable questions have no source and must be declined.",
+  "questions": [
+    {
+      "id": "att-01",
+      "type": "factual",
+      "source": "NIPS-2017-attention-is-all-you-need-Paper.pdf",
+      "question": "How many layers are in the Transformer encoder stack?",
+      "reference_answer": "The encoder is composed of a stack of N = 6 identical layers.",
+      "evidence": ["the encoder is composed of a stack of n = 6 identical layers"]
+    },
+    {
+      "id": "att-02",
+      "type": "reasoning",
+      "source": "NIPS-2017-attention-is-all-you-need-Paper.pdf",
+      "question": "Why are the dot products scaled by 1/sqrt(dk) in scaled dot-product attention?",
+      "reference_answer": "For large values of dk the dot products grow large in magnitude, pushing the softmax into regions with extremely small gradients; scaling by 1/sqrt(dk) counteracts this.",
+      "evidence": ["pushing the softmax function into regions where it has extremely small gradients"]
+    },
+    {
+      "id": "att-03",
+      "type": "factual",
+      "source": "NIPS-2017-attention-is-all-you-need-Paper.pdf",
+      "question": "How many attention heads does the Transformer use, and what is the dimension of each head?",
+      "reference_answer": "It uses h = 8 parallel attention heads, each with dk = dv = dmodel/h = 64.",
+      "evidence": ["we employ h = 8 parallel attention layers, or heads"]
+    },
+    {
+      "id": "att-04",
+      "type": "factual",
+      "source": "NIPS-2017-attention-is-all-you-need-Paper.pdf",
+      "question": "What is the inner-layer dimensionality of the position-wise feed-forward network?",
+      "reference_answer": "The inner layer has dimensionality dff = 2048, while its input and output dimension is dmodel = 512.",
+      "evidence": ["the inner-layer has dimensionality dff = 2048"]
+    },
+    {
+      "id": "att-05",
+      "type": "factual",
+      "source": "NIPS-2017-attention-is-all-you-need-Paper.pdf",
+      "question": "What BLEU score does the big Transformer achieve on the WMT 2014 English-to-German translation task?",
+      "reference_answer": "28.4 BLEU, a new state of the art that beats the previous best results, including ensembles, by more than 2 BLEU.",
+      "evidence": ["establishing a new state-of-the-art bleu score of 28.4", "our model achieves 28.4 bleu"]
+    },
+    {
+      "id": "att-06",
+      "type": "factual",
+      "source": "NIPS-2017-attention-is-all-you-need-Paper.pdf",
+      "question": "Which optimizer was used to train the Transformer, and with what hyperparameters?",
+      "reference_answer": "Adam with beta1 = 0.9, beta2 = 0.98 and epsilon = 1e-9, with a learning rate that warms up linearly and then decays with the inverse square root of the step number.",
+      "evidence": ["we used the adam optimizer"]
+    },
+    {
+      "id": "att-07",
+      "type": "factual",
+      "source": "NIPS-2017-attention-is-all-you-need-Paper.pdf",
+      "question": "How many warmup steps were used in the Transformer's learning rate schedule?",
+      "reference_answer": "warmup_steps = 4000.",
+      "evidence": ["warmup_steps = 4000"]
+    },
+    {
+      "id": "att-08",
+      "type": "reasoning",
+      "source": "NIPS-2017-attention-is-all-you-need-Paper.pdf",
+      "question": "What label smoothing value was used, and how did it affect the model?",
+      "reference_answer": "Label smoothing of 0.1 was used. It hurts perplexity because the model learns to be more unsure, but improves accuracy and BLEU score.",
+      "evidence": ["this hurts perplexity, as the model learns to be more unsure"]
+    },
+    {
+      "id": "att-09",
+      "type": "factual",
+      "source": "NIPS-2017-attention-is-all-you-need-Paper.pdf",
+      "question": "What hardware was the Transformer trained on, and how long did the base models train?",
+      "reference_answer": "One machine with 8 NVIDIA P100 GPUs. The base models trained for 100,000 steps, or 12 hours (about 0.4 seconds per step); the big models trained for 300,000 steps (3.5 days).",
+      "evidence": ["we trained the base models for a total of 100,000 steps or 12 hours"]
+    },
+    {
+      "id": "att-10",
+      "type": "reasoning",
+      "source": "NIPS-2017-attention-is-all-you-need-Paper.pdf",
+      "question": "Why did the authors choose sinusoidal positional encodings instead of learned positional embeddings?",
+      "reference_answer": "Both produced nearly identical results, but the sinusoidal version may allow the model to extrapolate to sequence lengths longer than those seen during training.",
+      "evidence": ["may allow the model to extrapolate to sequence lengths longer"]
+    },
+    {
+      "id": "att-11",
+      "type": "reasoning",
+      "source": "NIPS-2017-attention-is-all-you-need-Paper.pdf",
+      "question": "How does self-attention compare to recurrent layers in terms of sequential operations and complexity per layer?",
+      "reference_answer": "Self-attention connects all positions with a constant O(1) number of sequential operations and has O(n^2 * d) complexity per layer, while a recurrent layer needs O(n) sequential operations and has O(n * d^2) complexity. Self-attention is faster when the sequence length n is smaller than the representation dimension d.",
+      "evidence": ["a self-attention layer connects all positions with a constant number of sequentially executed operations", "self-attention o(n2 · d)"]
+    },
+    {
+      "id": "att-12",
+      "type": "factual",
+      "source": "NIPS-2017-attention-is-all-you-need-Paper.pdf",
+      "question": "In what three ways does the Transformer use multi-head attention?",
+      "reference_answer": "Encoder-decoder attention (queries from the decoder, keys and values from the encoder output), self-attention in the encoder, and masked self-attention in the decoder that prevents attending to subsequent positions.",
+      "evidence": ["the transformer uses multi-head attention in three different ways"]
+    },
+    {
+      "id": "att-13",
+      "type": "table",
+      "source": "NIPS-2017-attention-is-all-you-need-Paper.pdf",
+      "question": "According to Table 2, what BLEU scores did the Transformer base model get on English-to-German and English-to-French?",
+      "reference_answer": "27.3 BLEU on English-to-German and 38.1 BLEU on English-to-French.",
+      "evidence": ["transformer (base model) 27.3"]
+    },
+    {
+      "id": "att-14",
+      "type": "factual",
+      "source": "NIPS-2017-attention-is-all-you-need-Paper.pdf",
+      "question": "What residual dropout rate was used for the base Transformer model?",
+      "reference_answer": "Pdrop = 0.1.",
+      "evidence": ["for the base model, we use a rate of pdrop = 0.1"]
+    },
+    {
+      "id": "vl-01",
+      "type": "factual",
+      "source": "VL JEPA.pdf",
+      "question": "What does VL-JEPA predict instead of autoregressively generating tokens?",
+      "reference_answer": "It predicts continuous embeddings of the target texts, learning in an abstract representation space rather than token space.",
+      "evidence": ["vl-jepa predicts continuous embeddings of the target texts"]
+    },
+    {
+      "id": "vl-02",
+      "type": "factual",
+      "source": "VL JEPA.pdf",
+      "question": "What are the four components of the VL-JEPA architecture?",
+      "reference_answer": "The X-Encoder, the Predictor, the Y-Encoder and the Y-Decoder.",
+      "evidence": ["the vl-jepa comprises of four components"]
+    },
+    {
+      "id": "vl-03",
+      "type": "factual",
+      "source": "VL JEPA.pdf",
+      "question": "By how much does VL-JEPA's selective decoding reduce the number of decoding operations?",
+      "reference_answer": "By about 2.85x, while maintaining similar performance to non-adaptive uniform decoding.",
+      "evidence": ["operations by ∼2.85×"]
+    },
+    {
+      "id": "vl-04",
+      "type": "factual",
+      "source": "VL JEPA.pdf",
+      "question": "Which model does VL-JEPA use as its X-Encoder?",
+      "reference_answer": "A frozen V-JEPA 2 ViT-L with 304M parameters.",
+      "evidence": ["we use a frozen v-jepa 2 vit-l"]
+    },
+    {
+      "id": "vl-05",
+      "type": "factual",
+      "source": "VL JEPA.pdf",
+      "question": "How is the VL-JEPA predictor initialized, and how many trainable parameters does it have?",
+      "reference_answer": "It is initialized with the last 8 Transformer layers of Llama-3.2-1B, giving 490M trainable parameters.",
+      "evidence": ["the predictor is initialized with the last 8 transformer layers of llama-3.2-1b"]
+    },
+    {
+      "id": "vl-06",
+      "type": "factual",
+      "source": "VL JEPA.pdf",
+      "question": "Which model initializes VL-JEPA's Y-Encoder?",
+      "reference_answer": "EmbeddingGemma-300M.",
+      "evidence": ["we use embeddinggemma-300m", "initialized by embeddinggemma-300m"]
+    },
+    {
+      "id": "vl-07",
+      "type": "factual",
+      "source": "VL JEPA.pdf",
+      "question": "What loss function is used to train VL-JEPA?",
+      "reference_answer": "Bi-directional InfoNCE loss, training the Predictor and Y-Encoder jointly; it was chosen for its maturity in the vision-language domain.",
+      "evidence": ["we adopt the infonce loss"]
+    },
+    {
+      "id": "vl-08",
+      "type": "factual",
+      "source": "VL JEPA.pdf",
+      "question": "What are the two training stages of VL-JEPA?",
+      "reference_answer": "A query-free large-scale pretraining stage on caption data for vision-language alignment (producing VL-JEPA BASE), followed by a supervised finetuning stage that adds VQA capabilities (producing VL-JEPA SFT).",
+      "evidence": ["vl-jepa is trained with two stages", "trained in two stages"]
+    },
+    {
+      "id": "vl-09",
+      "type": "factual",
+      "source": "VL JEPA.pdf",
+      "question": "How long did VL-JEPA pretraining take, and on what hardware?",
+      "reference_answer": "4 weeks using 24 nodes with 8 NVIDIA H200 GPUs each.",
+      "evidence": ["the pretraining takes 4 weeks using 24 nodes"]
+    },
+    {
+      "id": "vl-10",
+      "type": "factual",
+      "source": "VL JEPA.pdf",
+      "question": "How many parameters does VL-JEPA have in total?",
+      "reference_answer": "1.6B parameters.",
+      "evidence": ["despite only having 1.6b parameters"]
+    },
+    {
+      "id": "vl-11",
+      "type": "factual",
+      "source": "VL JEPA.pdf",
+      "question": "What ImageNet zero-shot accuracy did VL-JEPA reach after the image-only pretraining phase?",
+      "reference_answer": "61.6% ImageNet zero-shot accuracy (without prompt ensembling), after 100k iterations and 2B samples seen.",
+      "evidence": ["61.6% imagenet zero-shot accuracy"]
+    },
+    {
+      "id": "vl-12",
+      "type": "reasoning",
+      "source": "VL JEPA.pdf",
+      "question": "How does VL-JEPA decide when to decode during selective decoding?",
+      "reference_answer": "It monitors the continuous stream of predicted embeddings, smooths it (e.g. average pooling), and decodes only when a significant semantic shift is detected, such as the local window variance exceeding a threshold.",
+      "evidence": ["decoded only when a significant semantic shift is detected"]
+    },
+    {
+      "id": "neg-01",
+      "type": "unanswerable",
+      "source": null,
+      "question": "What BLEU score did the Transformer achieve on the WMT 2014 English-to-Spanish task?",
+      "reference_answer": null,
+      "evidence": []
+    },
+    {
+      "id": "neg-02",
+      "type": "unanswerable",
+      "source": null,
+      "question": "What accuracy does VL-JEPA achieve on the MMLU benchmark?",
+      "reference_answer": null,
+      "evidence": []
+    },
+    {
+      "id": "neg-03",
+      "type": "unanswerable",
+      "source": null,
+      "question": "How much did it cost in US dollars to train VL-JEPA?",
+      "reference_answer": null,
+      "evidence": []
+    },
+    {
+      "id": "neg-04",
+      "type": "unanswerable",
+      "source": null,
+      "question": "What is the recommended daily dosage of ibuprofen for adults?",
+      "reference_answer": null,
+      "evidence": []
+    },
+    {
+      "id": "neg-05",
+      "type": "unanswerable",
+      "source": null,
+      "question": "Who won the 2022 FIFA World Cup?",
+      "reference_answer": null,
+      "evidence": []
+    }
+  ]
+}
